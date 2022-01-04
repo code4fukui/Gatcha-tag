@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script type="module" src="gatcha.js"></script>
+    <script>
+        const COUNT = 10;
+        let count = COUNT;
+
+        function おみくじする(elmGatcha){
+            if(0 < count){
+                alert(["小吉","中吉","大吉"][Math.floor(Math.random()*3)]);
+                elmGatcha.proportion = (--count)/COUNT;
+            }else{
+                alert("おみくじは空っぽ");
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <cff-gatcha proportion="1.00" ongatcha="おみくじする(this);"></cff-gatcha>
+</body>
+
+</html>
