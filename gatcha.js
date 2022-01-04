@@ -82,7 +82,7 @@ class Gatcha extends HTMLElement{
                 that.#stage.container().style.cursor = 'default';
             });
             
-            kimg1.on('click', function(){
+            kimg1.on('click tap', function(){
                 (new Function(that.getAttribute('ongatcha'))).call(that);
             });
             
