@@ -14,4 +14,4 @@
 <cff-gatcha proportion="0.33" ongatcha="doSomething();"></cff-gatcha>
 ```
 
-see also 'gatcha.html'.
+see also '[gatcha.html](https://code4fukui.github.io/Gatcha-tag/gatcha.html)'.
