@@ -67,11 +67,13 @@ class Gatcha extends HTMLElement{
         const img1 = new Image();
         img1.onload = function(){
             const kimg1 = new Konva.Image({
-                x: layer.width()*32/Gatcha.WIDTH,
-                y: layer.height()*125/Gatcha.HEIGHT,
+                x: layer.width()*32/Gatcha.WIDTH + layer.width()*35/Gatcha.WIDTH/2,
+                y: layer.height()*125/Gatcha.HEIGHT + layer.height()*35/Gatcha.HEIGHT/2,
                 image: img1,
                 width: layer.width()*35/Gatcha.WIDTH,
                 height: layer.height()*35/Gatcha.HEIGHT,
+                offsetX: layer.width()*35/Gatcha.WIDTH/2,
+                offsetY: layer.height()*35/Gatcha.HEIGHT/2,
             });
 
             kimg1.on('mouseenter', function(){
@@ -83,7 +85,15 @@ class Gatcha extends HTMLElement{
             });
             
             kimg1.on('click tap', function(){
-                (new Function(that.getAttribute('ongatcha'))).call(that);
+                (new Konva.Animation(function(frame){
+                    if(kimg1.rotation() < 360){
+                        kimg1.rotate( frame.timeDiff * 180 / 1000 );
+                    }else{
+                        this.stop();
+                        kimg1.rotation(0);
+                        (new Function(that.getAttribute('ongatcha'))).call(that);
+                    }
+                })).start();
             });
             
             layer.add(kimg1);
